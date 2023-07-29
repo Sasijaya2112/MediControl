@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar2 from './Navbar2';
 import { Container } from 'react-bootstrap';
 import AddPatientModal from './AddPatientModal';
 import PatientTable from './PatientTable';
+import Navbar2 from '../Navbar2';
 
 const Profile = () => {
     return (

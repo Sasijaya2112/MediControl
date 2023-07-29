@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ViewDescriptionModal from './ViewDescriptionModal';
+import Medication from './Medication';
 
 const PatientTable = () => {
     return (
@@ -30,7 +31,8 @@ const PatientTable = () => {
                             <ViewDescriptionModal />
                         </th>
                         <th scope="col">
-                            <Button className='btn-sm btn-info'>Add/Show</Button>
+                            {/* <Button className='btn-sm btn-info'>Add/Show</Button> */}
+                            <Medication/>
                         </th>
                         <th scope="col">
                             <Button className='btn-sm btn-warning'>Edit</Button>

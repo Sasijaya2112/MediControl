@@ -2,7 +2,7 @@ import './App.css';
 import DoctorLogin from './Components/DoctorLogin.jsx'
 import DoctorRegister from './Components/DoctorRegister.jsx'
 import Home from './Components/Home'
-import Profile from './Components/Profile';
+import Profile from './Components/PatientProfile/Profile';
 import Reports from './Components/Reports';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
