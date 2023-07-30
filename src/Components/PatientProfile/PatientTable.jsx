@@ -5,24 +5,29 @@ import Medication from './Medication';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const PatientTable = () => {
+const PatientTable = ({ value }) => {
 
-    const[db_patients,db_getPatients]=useState([]);
+    const [db_patients, db_getPatients] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         loadPatients();
-    },[])
+    }, [])
 
-    const loadPatients = async() =>{
+    const loadPatients = async () => {
         const result = await axios.get("http://localhost:8080/patient-details")
         console.log(result);
         db_getPatients(result.data);
     }
 
-    const deletePatient=async (id)=>{
+    const deletePatient = async (id) => {
         await axios.delete(`http://localhost:8080/deletePatient/${id}`)
         loadPatients();
-      }
+    }
+
+    const filteredPatients = db_patients.filter((row) =>
+        row.name.toLowerCase().includes(value.toLowerCase())
+    );
+
 
     return (
         <div class="table-responsive">
@@ -33,7 +38,7 @@ const PatientTable = () => {
                         <th scope="col">DOV</th>
                         <th scope="col">Name</th>
                         <th scope="col">Age</th>
-                        <th scope="col">Issue</th>
+                        <th scope="col">Presenting complaint</th>
                         <th scope="col">Description</th>
                         <th scope="col">Medication</th>
                         <th scope="col">Edit</th>
@@ -42,15 +47,15 @@ const PatientTable = () => {
                 </thead>
                 <tbody>
                     {
-                        db_patients.map((row, index) => (
-                            <tr>
+                        filteredPatients.map((row, index) => (
+                            <tr key={row.id}>
                                 <th scope="row">{row.id}</th>
                                 <td>{row.dov}</td>
                                 <td>{row.name}</td>
                                 <td>{row.age}</td>
                                 <td>{row.issue}</td>
                                 <th scope="col">
-                                    <ViewDescriptionModal />
+                                    <ViewDescriptionModal index={row.id} />
                                 </th>
                                 <th scope="col">
                                     <Medication />
@@ -59,7 +64,7 @@ const PatientTable = () => {
                                     <Button className='btn-sm btn-warning'>Edit</Button>
                                 </th>
                                 <th scope="col">
-                                    <Button className='btn-sm btn-danger' onClick={()=>deletePatient(row.id)}>Delete</Button>
+                                    <Button className='btn-sm btn-danger' onClick={() => deletePatient(row.id)}>Delete</Button>
                                 </th>
                             </tr>
                         ))

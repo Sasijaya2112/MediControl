@@ -40,7 +40,7 @@ const AddPatientModal = () => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                    Patient Details
+                    Patient Demographics
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -58,11 +58,11 @@ const AddPatientModal = () => {
                             <Form.Control type="text" placeholder="" value={age} onChange={(e)=>setAge(e.target.value)}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Issue</Form.Label>
+                            <Form.Label>Presenting complaint</Form.Label>
                             <Form.Control type="text" placeholder="" value={issue} onChange={(e)=>setIssue(e.target.value)}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Description</Form.Label>
+                            <Form.Label>Description (History of complaint)</Form.Label>
                             <Form.Control as="textarea" rows={3} value={description} onChange={(e)=>setDesc(e.target.value)}/>
                         </Form.Group>
                         <Form.Group>
