@@ -2,9 +2,9 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useEffect,useState } from 'react';
+import EditRegisteredDetails from './EditRegisteredDetails';
 
-const RegisteredTable = ({value}) => {
-
+const RegisteredTable = ({value,edit}) => {
 
     const [db_patients, db_getPatients] = useState([]);
 
@@ -23,9 +23,17 @@ const RegisteredTable = ({value}) => {
         loadPatients();
     }
 
+    // const handleUpdate = async (id) => {
+    //     // await axios.put(`http://localhost:8080/editRegisteredPatient/${id}`)
+    //     // loadPatients();
+    //     console.log(id);
+    // }
+
     const filteredPatients = db_patients.filter((row) =>
         row.name.toLowerCase().includes(value.toLowerCase())
     );
+
+    const edits = edit.toString();
 
     return (
         <div class="table-responsive">
@@ -39,7 +47,7 @@ const RegisteredTable = ({value}) => {
                         <th scope="col">Gender</th>
                         <th scope="col">Phone No.</th>
                         <th scope="col">Address</th>
-                        <th scope="col">View</th>
+                        <th scope="col">Update</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -48,14 +56,15 @@ const RegisteredTable = ({value}) => {
                     filteredPatients.map((row, index) => (
                         <tr key={row.id}>
                             <th scope="row">{row.id}</th>
-                            <td>{row.name}</td>
-                            <td>{row.dob}</td>
-                            <td>{row.age}</td>
-                            <td>{row.gender}</td>
-                            <td>{row.phone}</td>
-                            <td>{row.address}</td>
+                            <td contenteditable={edits}>{row.name}</td>
+                            <td contenteditable={edits}>{row.dob}</td>
+                            <td contenteditable={edits}>{row.age}</td>
+                            <td contenteditable={edits}>{row.gender}</td>
+                            <td contenteditable={edits}>{row.phone}</td>
+                            <td contenteditable={edits}>{row.address}</td>
                             <th scope="col">
-                                <Button className='btn-sm btn-warning'>Edit</Button>
+                                {/* <Button className='btn-sm btn-primary' onClick={()=>handleUpdate(row.id)}>Update</Button> */}
+                                <EditRegisteredDetails value={row.id}/>
                             </th>
                             <th scope="col">
                                 <Button className='btn-sm btn-danger' onClick={() => deletePatient(row.id)}>Delete</Button>

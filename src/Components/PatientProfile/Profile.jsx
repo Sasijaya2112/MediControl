@@ -7,15 +7,11 @@ import Navbar2 from '../Navbar2';
 const Profile = () => {
 
     const [name,setName]=useState('')
-    // const [search,setSearch]=useState('');
 
     const searchPatient = (e) =>{
         setName(e.target.value);
     }
-    // const handleSearch = () =>{
-    //     setSearch(name);
-    //     console.log(name);
-    // }
+   
     return (
         <div>
             <Navbar2 />
