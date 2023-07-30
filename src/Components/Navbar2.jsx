@@ -17,6 +17,7 @@ const Navbar2 = () => {
             navbarScroll
           >
             <Nav.Link href="/home" className='text-light mx-4'>Home</Nav.Link>
+            <Nav.Link href="/patientregister" className='text-light mx-4'>Patient Registeration</Nav.Link>
             <Nav.Link href="/profile" className='text-light mx-4'>Patient Profile</Nav.Link>
             <Nav.Link href="/reports" className='text-light mx-4'>Report</Nav.Link>
           </Nav>

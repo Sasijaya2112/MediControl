@@ -4,6 +4,7 @@ import DoctorRegister from './Components/DoctorRegister.jsx'
 import Home from './Components/Home'
 import Profile from './Components/PatientProfile/Profile';
 import Reports from './Components/Reports';
+import Register from './Components/PatientRegisteration/Register';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<DoctorLogin />} />
         <Route path="/register" element={<DoctorRegister />} />
         <Route path='/home' element={<Home/>}/>
+        <Route path='/patientregister' element={<Register/>}/>
         <Route path='/reports' element={<Reports/>}/>
         <Route path='/profile' element={<Profile/>}/>
       </Routes>
