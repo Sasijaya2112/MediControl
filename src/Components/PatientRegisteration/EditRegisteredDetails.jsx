@@ -88,7 +88,7 @@ const EditRegisteredDetails = ({value}) => {
                             <Form.Control as="textarea" rows={3} value={address} onChange={(e)=>setAddress(e.target.value)}/>
                         </Form.Group>
                         <Form.Group>
-                        <Button onClick={updatePatient}>Submit</Button>
+                        <Button onClick={updatePatient}>Update</Button>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

@@ -20,7 +20,7 @@ const ViewDescriptionModal = ({ index }) => {
 
   return (
     <>
-      <Button variant="primary btn-sm" onClick={handleShow}>View</Button>
+      <Button variant="primary btn-sm" onClick={handleShow}>Investigate</Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>

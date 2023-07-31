@@ -21,7 +21,7 @@ const RegisterPatientModal = () => {
             name:name,
             dob:dob,
             age:age,
-            gender:gender,
+            gender:gender.toUpperCase(),
             phone:phone,
             address:address
         }
