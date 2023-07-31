@@ -5,8 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { Table } from 'react-bootstrap';
 
-
-
 const Medication = () => {
     const [lgShow, setLgShow] = useState(false);
     const [tableData, setTableData] = useState([
@@ -52,8 +50,15 @@ const Medication = () => {
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Button onClick={add}>Add row</Button>
+                            <div className="d-flex gap-3">
+                            <Form.Control type='text' placeholder='Tablet name'/>
+                            ​​​​​​​​​​​​​​​​​<Form.Control type='number' placeholder='Forenoon'/>
+                            <Form.Control type='number' placeholder='Afternoon'/>
+                            <Form.Control type='number' placeholder='Night'/>
+                            <Button onClick={add}>Add</Button>
+                            </div>
                         </Form.Group>
+                        
                         <Table striped bordered hover>
                             <thead>
                                 <tr>

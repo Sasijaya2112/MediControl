@@ -61,6 +61,10 @@ function Investigate() {
                                 <Form.Label>Follow Up</Form.Label>
                                 <Form.Control type="date" placeholder="" />
                             </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Upload Report</Form.Label>
+                                <Form.Control type="file" placeholder="" />
+                            </Form.Group>
                         </div>
                         <div className="d-flex gap-3">
                             <Button className='btn-primary'>Save</Button>
