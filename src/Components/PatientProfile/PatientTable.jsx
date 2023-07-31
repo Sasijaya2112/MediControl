@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Investigate from './Investigate';
 
-const PatientTable = ({ value }) => {
+const PatientTable = ({ patientName }) => {
 
     const [db_patients, db_getPatients] = useState([]);
 
@@ -32,7 +32,7 @@ const PatientTable = ({ value }) => {
     // }
 
     const filteredPatients = db_patients.filter((row) =>
-        row.name.toLowerCase().includes(value.toLowerCase())
+        row.name.toLowerCase().includes(patientName.toLowerCase())
     );
 
 
