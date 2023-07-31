@@ -23,12 +23,6 @@ const RegisteredTable = ({value,edit}) => {
         loadPatients();
     }
 
-    // const handleUpdate = async (id) => {
-    //     // await axios.put(`http://localhost:8080/editRegisteredPatient/${id}`)
-    //     // loadPatients();
-    //     console.log(id);
-    // }
-
     const filteredPatients = db_patients.filter((row) =>
         row.name.toLowerCase().includes(value.toLowerCase())
     );

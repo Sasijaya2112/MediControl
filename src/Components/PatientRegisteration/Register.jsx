@@ -6,11 +6,9 @@ import RegisteredTable from './RegisteredTable';
 import { useState } from 'react';
 import ReactSwitch from 'react-switch';
 
-
 const Register = () => {
 
     const [name, setName] = useState('')
-
 
     const searchPatient = (e) => {
         setName(e.target.value);
