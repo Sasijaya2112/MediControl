@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useEffect,useState } from 'react';
 import EditRegisteredDetails from './EditRegisteredDetails';
+import DeleteModal from './DeleteModal';
 
 const RegisteredTable = ({value,edit}) => {
 
@@ -18,10 +19,10 @@ const RegisteredTable = ({value,edit}) => {
         db_getPatients(result.data);
     }
 
-    const deletePatient = async (id) => {
-        await axios.delete(`http://localhost:8080/deleteRegisteredPatient/${id}`)
-        loadPatients();
-    }
+    // const deletePatient = async (id) => {
+    //     await axios.delete(`http://localhost:8080/deleteRegisteredPatient/${id}`)
+    //     loadPatients();
+    // }
 
     const filteredPatients = db_patients.filter((row) =>
         row.name.toLowerCase().includes(value.toLowerCase())
@@ -61,7 +62,8 @@ const RegisteredTable = ({value,edit}) => {
                                 <EditRegisteredDetails value={row.id}/>
                             </th>
                             <th scope="col">
-                                <Button className='btn-sm btn-danger' onClick={() => deletePatient(row.id)}>Delete</Button>
+                                {/* <Button className='btn-sm btn-danger' onClick={() => deletePatient(row.id)}>Delete</Button> */}
+                                <DeleteModal value={row.id}/>
                             </th>
                         </tr>
                     ))

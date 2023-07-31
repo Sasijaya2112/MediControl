@@ -97,7 +97,7 @@ const PatientTable = ({ value }) => {
                                 <td>{row.gender}</td>
                                 <th scope="col">
                                     {/* <ViewDescriptionModal index={row.id} /> */}
-                                    <Investigate />
+                                    <Investigate value={row.id}/>
                                 </th>
                                 <th scope="col">
                                     <Medication />

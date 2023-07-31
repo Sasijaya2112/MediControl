@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import { useState , useEffect, useCallback } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
+import axios from 'axios';
 
-function Investigate() {
+function Investigate({value}) {
     const [lgShow, setLgShow] = useState(false);
+
+    const [db_patientsById, db_getPatientById] = useState([]);
+
+    const loadPatients = useCallback(async ()=>{
+        const result = await axios.get(`http://localhost:8080/getRegisteredPatient?id=${value}`)
+        db_getPatientById(result.data);
+        console.log(result.data);
+    },[value])
+
+    useEffect(() => {
+        loadPatients();
+    }, [loadPatients])
 
     return (
         <>
@@ -17,7 +30,7 @@ function Investigate() {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        Patient Investigation
+                        Patient Investigation - {db_patientsById.name} ({db_patientsById.age})
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
