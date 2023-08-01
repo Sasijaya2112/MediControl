@@ -49,7 +49,7 @@ const EditRegisteredDetails = ({value}) => {
 
     return (
         <div>
-            <Button className='btn-primary btn-sm' onClick={()=>setLgShow(true)}>Update</Button>
+            <Button className='btn-primary btn-sm' onClick={()=>setLgShow(true)}>Edit</Button>
             <Modal
                 size="lg"
                 show={lgShow}

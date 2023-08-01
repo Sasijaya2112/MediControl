@@ -1,11 +1,10 @@
 import React from 'react';
-// import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useEffect,useState } from 'react';
 import EditRegisteredDetails from './EditRegisteredDetails';
 import DeleteModal from './DeleteModal';
 
-const RegisteredTable = ({value,edit}) => {
+const RegisteredTable = ({value}) => {
 
     const [db_patients, db_getPatients] = useState([]);
 
@@ -19,16 +18,9 @@ const RegisteredTable = ({value,edit}) => {
         db_getPatients(result.data);
     }
 
-    // const deletePatient = async (id) => {
-    //     await axios.delete(`http://localhost:8080/deleteRegisteredPatient/${id}`)
-    //     loadPatients();
-    // }
-
     const filteredPatients = db_patients.filter((row) =>
         row.name.toLowerCase().includes(value.toLowerCase())
     );
-
-    const edits = edit.toString();
 
     return (
         <div class="table-responsive">
@@ -51,12 +43,12 @@ const RegisteredTable = ({value,edit}) => {
                     filteredPatients.map((row, index) => (
                         <tr key={row.id}>
                             <th scope="row">{row.id}</th>
-                            <td contenteditable={edits}>{row.name}</td>
-                            <td contenteditable={edits}>{row.dob}</td>
-                            <td contenteditable={edits}>{row.age}</td>
-                            <td contenteditable={edits}>{row.gender}</td>
-                            <td contenteditable={edits}>{row.phone}</td>
-                            <td contenteditable={edits}>{row.address}</td>
+                            <td>{row.name}</td>
+                            <td>{row.dob}</td>
+                            <td>{row.age}</td>
+                            <td>{row.gender}</td>
+                            <td>{row.phone}</td>
+                            <td>{row.address}</td>
                             <th scope="col">
                                 {/* <Button className='btn-sm btn-primary' onClick={()=>handleUpdate(row.id)}>Update</Button> */}
                                 <EditRegisteredDetails value={row.id}/>

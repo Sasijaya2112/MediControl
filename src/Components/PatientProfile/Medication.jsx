@@ -49,11 +49,11 @@ const Medication = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <div className="d-flex gap-3">
+                        <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
                             <Form.Control type='text' placeholder='Tablet name'/>
-                            ​​​​​​​​​​​​​​​​​<Form.Control type='number' placeholder='Forenoon'/>
-                            <Form.Control type='number' placeholder='Afternoon'/>
+                            <div className="medication-tab-nos d-flex gap-3 mt-3">
+                            ​​​​​​​​​​​​​​​​​<Form.Control type='number' placeholder='FN'/>
+                            <Form.Control type='number' placeholder='AN'/>
                             <Form.Control type='number' placeholder='Night'/>
                             <Button onClick={add}>Add</Button>
                             </div>
@@ -84,7 +84,7 @@ const Medication = () => {
                             </tbody>
                         </Table>
                     </Form>
-                    <Button variant='success' style={{marginLeft:'45%'}} onClick={() => setLgShow(false)}>save</Button>
+                    <Button variant='success' style={{marginLeft:'45%'}} onClick={() => setLgShow(false)}>Save</Button>
                 </Modal.Body>
             </Modal>
         </div>

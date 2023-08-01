@@ -19,7 +19,8 @@ const Profile = () => {
     return (
         <div>
             <Navbar2 />
-            <Container>
+            <p className='fs-3 mt-4 text-secondary'>Patient Profile</p>
+            <Container className='profile-container'>
                 <div className="row justify-content-md-center">
                     <div className='col-lg-4'>
                         <div className="input-group mb-3 ">
