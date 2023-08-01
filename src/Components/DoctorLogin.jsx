@@ -7,7 +7,7 @@ function DoctorLogin() {
         <div className='mt-5'></div>
         <div class="row gap-5">
           <div class="col-sm">
-            <img src="https://static.vecteezy.com/system/resources/previews/004/578/683/original/a-patient-consults-a-doctor-and-nurse-free-vector.jpg" class="img-fluid mt-5" alt="doctor-patient" />
+            <img src="https://static.vecteezy.com/system/resources/previews/004/578/683/original/a-patient-consults-a-doctor-and-nurse-free-vector.jpg" class="img-fluid mt-5 d-none d-sm-block" alt="doctor-patient" />
           </div>
           <div class="col-sm">
             <div className="m-5">

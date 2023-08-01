@@ -58,7 +58,7 @@ const EditRegisteredDetails = ({value}) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                    Patient Demographics
+                    Edit Patient Demographics - {name} ({age})
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

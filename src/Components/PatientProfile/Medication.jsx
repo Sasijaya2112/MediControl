@@ -58,7 +58,6 @@ const Medication = () => {
                             <Button onClick={add}>Add</Button>
                             </div>
                         </Form.Group>
-                        
                         <Table striped bordered hover>
                             <thead>
                                 <tr>
