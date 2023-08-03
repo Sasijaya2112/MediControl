@@ -8,24 +8,39 @@ import axios from 'axios';
 const RegisterPatientModal = () => {
     const [lgShow, setLgShow] = useState(false);
 
-    const[dob,setDob]=useState('');
-    const[name,setName]=useState('');
-    const[age,setAge]=useState('');
-    const[gender,setGender]=useState('');
-    const[phone,setPhone]=useState('');
-    const[address,setAddress]=useState('');
+    const [dob, setDob] = useState('');
+    const [name, setName] = useState('');
+    const [age, setAge] = useState('');
+    const [gender, setGender] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
 
-    const addPatient=async(e)=>{
+    const investigate = {
+        dov: "",
+        bp: "",
+        height: 0,
+        weight: 0,
+        complaint: "",
+        history: "",
+        identification: "",
+        prognosis: "",
+        followup: "",
+        parentId: ""
+    }
+
+    const addPatient = async (e) => {
         e.preventDefault();
-         const values = {
-            name:name,
-            dob:dob,
-            age:age,
-            gender:gender.toUpperCase(),
-            phone:phone,
-            address:address
+        const values = {
+            name: name,
+            dob: dob,
+            age: age,
+            gender: gender.toUpperCase(),
+            phone: phone,
+            address: address,
+            investigation: investigate
         }
-        await axios.post("http://localhost:8080/registerPatient",values)
+        await axios.post("http://localhost:8080/registerPatient", values)
+        await axios.post("http://localhost:8080/patientInvestigation", investigate)
         console.log(values);
         window.location.reload(false);
         setLgShow(false);
@@ -42,37 +57,37 @@ const RegisterPatientModal = () => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                    Patient Demographics
+                        Patient Demographics
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="" onChange={(e)=>setName(e.target.value)}/>
+                            <Form.Control type="text" placeholder="" onChange={(e) => setName(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Date of Birth</Form.Label>
-                            <Form.Control type="date" placeholder="" onChange={(e)=>setDob(e.target.value)}/>
+                            <Form.Control type="date" placeholder="" onChange={(e) => setDob(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Age</Form.Label>
-                            <Form.Control type="text" placeholder="" onChange={(e)=>setAge(e.target.value)}/>
+                            <Form.Control type="text" placeholder="" onChange={(e) => setAge(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Gender</Form.Label>
-                            <Form.Control type="text" placeholder="" onChange={(e)=>setGender(e.target.value)}/>
+                            <Form.Control type="text" placeholder="" onChange={(e) => setGender(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Phone No.</Form.Label>
-                            <Form.Control type="text" placeholder="" onChange={(e)=>setPhone(e.target.value)}/>
+                            <Form.Control type="text" placeholder="" onChange={(e) => setPhone(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Address</Form.Label>
-                            <Form.Control as="textarea" rows={3} onChange={(e)=>setAddress(e.target.value)}/>
+                            <Form.Control as="textarea" rows={3} onChange={(e) => setAddress(e.target.value)} />
                         </Form.Group>
                         <Form.Group>
-                        <Button onClick={addPatient}>Submit</Button>
+                            <Button onClick={addPatient}>Submit</Button>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
