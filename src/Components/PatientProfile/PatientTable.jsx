@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import Medication from './Medication';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Investigate from './Investigate';
+import Report from './Report';
 
 const PatientTable = ({ patientName }) => {
 
@@ -55,7 +55,7 @@ const PatientTable = ({ patientName }) => {
                                     <Medication />
                                 </th>
                                 <th scope="col">
-                                    <Button className='btn-sm btn-danger'>View</Button>
+                                    <Report value={row.id}/>
                                 </th>
                             </tr>
                         ))

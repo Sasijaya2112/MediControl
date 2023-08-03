@@ -55,6 +55,19 @@ function Investigate({ value }) {
         parentId: parentId
     }
 
+    const report = {
+        dov: dov,
+        bp: bp,
+        height: height,
+        weight:weight,
+        complaint: complaint,
+        history: history,
+        identification: identification,
+        prognosis: prognosis,
+        followup: followup,
+        parentId:parentId
+    }
+
     const handleOpen = () =>{
         setParentId(db_patientsById.id);
         setLgShow(true);
@@ -62,8 +75,17 @@ function Investigate({ value }) {
 
     const handleSave = async() => {
         await axios.put(`http://localhost:8080/editInvestigation/${value}`, investigationDetails)
+        await axios.post("http://localhost:8080/addReport", report)
         console.log(investigationDetails);
         setLgShow(false);
+        window.location.reload(false);
+        // setDov('');
+        // setBp('');
+        // setComplaint('');
+        // setHistory('');
+        // setIdentification('');
+        // setPrognosis('');
+        // setFollowup('');
     }
 
     return (
@@ -86,11 +108,11 @@ function Investigate({ value }) {
                             <div className="d-flex gap-4 flex-sm-wrap flex-md-nowrap">
                                 <Form.Group className="mb-3">
                                     <Form.Label>Date of Visit</Form.Label>
-                                    <Form.Control type="date" placeholder="" value={dov} onChange={(e)=>setDov(e.target.value)}/>
+                                    <Form.Control type="date" placeholder="" onChange={(e)=>setDov(e.target.value)}/>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Blood Pressure</Form.Label>
-                                    <Form.Control type="text" placeholder="" value={bp} onChange={(e)=>setBp(e.target.value)}/>
+                                    <Form.Control type="text" placeholder="" onChange={(e)=>setBp(e.target.value)}/>
                                 </Form.Group>
                             </div>
                             <div className="d-flex gap-4 flex-sm-wrap flex-md-nowrap">
@@ -106,25 +128,25 @@ function Investigate({ value }) {
                         </div>
                         <Form.Group className="mb-3">
                             <Form.Label>Present Complaint</Form.Label>
-                            <Form.Control type="text" placeholder="" value={complaint} onChange={(e)=>setComplaint(e.target.value)}/>
+                            <Form.Control type="text" placeholder="" onChange={(e)=>setComplaint(e.target.value)}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>History of Presenting Complaint</Form.Label>
-                            <Form.Control as="textarea" placeholder="" value={history} onChange={(e)=>setHistory(e.target.value)}/>
+                            <Form.Control as="textarea" placeholder="" onChange={(e)=>setHistory(e.target.value)}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Identification</Form.Label>
-                            <Form.Control as="textarea" placeholder="" value={identification} onChange={(e)=>setIdentification(e.target.value)}/>
+                            <Form.Control as="textarea" placeholder="" onChange={(e)=>setIdentification(e.target.value)}/>
                         </Form.Group>
                         <div className="d-flex gap-md-4 gap-sm-0 flex-wrap flex-md-nowrap">
                             <div className="d-flex gap-4 flex-sm-wrap flex-md-nowrap">
                                 <Form.Group className="mb-3">
                                     <Form.Label>Prognosis </Form.Label>
-                                    <Form.Control type="text" placeholder="" value={prognosis} onChange={(e)=>setPrognosis(e.target.value)}/>
+                                    <Form.Control type="text" placeholder="" onChange={(e)=>setPrognosis(e.target.value)}/>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Follow Up</Form.Label>
-                                    <Form.Control type="date" placeholder="" value={followup} onChange={(e)=>setFollowup(e.target.value)}/>
+                                    <Form.Control type="date" placeholder="" onChange={(e)=>setFollowup(e.target.value)}/>
                                 </Form.Group>
                             </div>
                             <Form.Group className="mb-3">
