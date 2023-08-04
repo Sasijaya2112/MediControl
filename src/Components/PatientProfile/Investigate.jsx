@@ -79,13 +79,13 @@ function Investigate({ value }) {
         console.log(investigationDetails);
         setLgShow(false);
         window.location.reload(false);
-        // setDov('');
-        // setBp('');
-        // setComplaint('');
-        // setHistory('');
-        // setIdentification('');
-        // setPrognosis('');
-        // setFollowup('');
+        setDov('');
+        setBp('');
+        setComplaint('');
+        setHistory('');
+        setIdentification('');
+        setPrognosis('');
+        setFollowup('');
     }
 
     return (
@@ -108,7 +108,7 @@ function Investigate({ value }) {
                             <div className="d-flex gap-4 flex-sm-wrap flex-md-nowrap">
                                 <Form.Group className="mb-3">
                                     <Form.Label>Date of Visit</Form.Label>
-                                    <Form.Control type="date" placeholder="" onChange={(e)=>setDov(e.target.value)}/>
+                                    <Form.Control type="date" placeholder="" value={dov} onChange={(e)=>setDov(e.target.value)}/>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Blood Pressure</Form.Label>

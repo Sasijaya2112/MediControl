@@ -15,11 +15,27 @@ const RegisterPatientModal = () => {
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
 
+    // getting current date
+    const currentDate = new Date();
+
+    // Extract the individual date components
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; // Months are zero-indexed, so we add 1
+    const day = currentDate.getDate();
+
+    // Format the date to display as 'YYYY-MM-DD'
+    const todayDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+    // creating random patient ID
+    const randomNumber = Math.floor(Math.random() * 90000) + 10000;
+
+
     const investigate = {
-        dov: "",
+        id: randomNumber,
+        dov: todayDate,
         bp: "",
-        height: 0,
-        weight: 0,
+        height: "",
+        weight: "",
         complaint: "",
         history: "",
         identification: "",
@@ -31,6 +47,7 @@ const RegisterPatientModal = () => {
     const addPatient = async (e) => {
         e.preventDefault();
         const values = {
+            id: randomNumber,
             name: name,
             dob: dob,
             age: age,
