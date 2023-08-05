@@ -1,36 +1,54 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect ,useCallback } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { Table } from 'react-bootstrap';
+import axios from 'axios';
 
-const Medication = () => {
+const Medication = ({value}) => {
     const [lgShow, setLgShow] = useState(false);
-    const [tableData, setTableData] = useState([
-        { id: 1, tablet: 'Dolo 650', fn: 1, an:0, night:1 },
-        { id: 2, tablet: 'Crocin 500', fn: 0, an:0, night:1 },
-        { id: 2, tablet: 'Amtas AT 50', fn: 1, an:0, night:1 },
-        { id: 2, tablet: 'Tonact 10', fn: 1, an:0, night:1 },
-        { id: 2, tablet: 'Pantocid 40', fn: 1, an:0, night:1 },
-        { id: 2, tablet: 'Neurobion', fn: 0, an:0, night:1 }
-      ]);
 
-      const handleEdit = (rowIndex, field, value) => {
-        const updatedData = tableData.map((row, index) =>
-          index === rowIndex ? { ...row, [field]: value } : row
-        );
-        setTableData(updatedData);
-      };
+    const[tablet,setTablet]=useState('');
+    const[forenoon,setForenoon]=useState(0);
+    const[afternoon,setAfternoon]=useState(0);
+    const[night,setNight]=useState(0);
 
-    const add = () =>{
-        const newId = tableData.length + 1;
-        setTableData([...tableData, {  id: newId, tablet: '', fn: 0, an:0, night:0 }]);
+    const[db_medication,db_getMedication]=useState([])
+    const [db_patientsById, db_getPatientById] = useState([]);
+    const loadPatients = useCallback(async () => {
+        const result = await axios.get(`http://localhost:8080/getRegisteredPatient?id=${value}`)
+        const medicine = await axios.get(`http://localhost:8080/getMedicine/${value}`)
+        db_getPatientById(result.data);
+        db_getMedication(medicine.data);
+        console.log(result.data);
+    }, [value])
+
+    useEffect(() => {
+        loadPatients();
+    }, [loadPatients])
+
+    const medication = {
+        tablet:tablet,
+        forenoon:forenoon,
+        afternoon:afternoon,
+        night:night,
+        parentId:db_patientsById.id
     }
 
-    const deleteRow = (rowIndex) =>{
-        const updatedData = tableData.filter((row, index) => index !== rowIndex);
-    setTableData(updatedData);
+    const add = async () =>{
+        await axios.post("http://localhost:8080/addMedicine",medication)
+        console.log(medication);
+        setTablet('');
+        setForenoon('');
+        setAfternoon('');
+        setNight('');
+        loadPatients();
+    }
+
+    const deleteRow = async (rowIndex) =>{
+        await axios.delete(`http://localhost:8080/deleteMedicine/${rowIndex}`)
+        loadPatients();
     }
 
     return (
@@ -44,17 +62,17 @@ const Medication = () => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        Medication
+                        Medication - {db_patientsById.name} ({db_patientsById.age})
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                            <Form.Control type='text' placeholder='Tablet name'/>
+                            <Form.Control type='text' placeholder='Tablet name' value={tablet} onChange={(e)=>setTablet(e.target.value)}/>
                             <div className="medication-tab-nos d-flex gap-3 mt-3">
-                            ​​​​​​​​​​​​​​​​​<Form.Control type='number' placeholder='FN'/>
-                            <Form.Control type='number' placeholder='AN'/>
-                            <Form.Control type='number' placeholder='Night'/>
+                            ​​​​​​​​​​​​​​​​​<Form.Control type='number' placeholder='FN' value={forenoon} onChange={(e)=>setForenoon(e.target.value)}/>
+                            <Form.Control type='number' placeholder='AN' value={afternoon} onChange={(e)=>setAfternoon(e.target.value)}/>
+                            <Form.Control type='number' placeholder='Night' value={night} onChange={(e)=>setNight(e.target.value)}/>
                             <Button onClick={add}>Add</Button>
                             </div>
                         </Form.Group>
@@ -70,20 +88,20 @@ const Medication = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {tableData.map((row,index)=>(
+                                {db_medication.map((row,index)=>(
                                     <tr>
                                     <td>{index+1}</td>
-                                    <td contenteditable="true" style={{maxWidth:'100px'}} onChange={(e)=>handleEdit(index,'tablet',e.target.value)}>{row.tablet}</td>
-                                    <td contenteditable="true" onChange={(e)=>handleEdit(index,'fn',e.target.value)}>{row.fn}</td>
-                                    <td contenteditable="true" onChange={(e)=>handleEdit(index,'an',e.target.value)}>{row.an}</td>
-                                    <td contenteditable="true" onChange={(e)=>handleEdit(index,'night',e.target.value)}>{row.night}</td>
-                                    <td><Button variant='danger btn-sm' onClick={()=>deleteRow(index)}>X</Button></td>
+                                    <td style={{maxWidth:'100px'}} >{row.tablet}</td>
+                                    <td >{row.forenoon}</td>
+                                    <td >{row.afternoon}</td>
+                                    <td >{row.night}</td>
+                                    <td><Button variant='danger btn-sm' onClick={()=>deleteRow(row.id)}>X</Button></td>
                                 </tr>
                                 ))}
                             </tbody>
                         </Table>
                     </Form>
-                    <Button variant='success' style={{marginLeft:'45%'}} onClick={() => setLgShow(false)}>Save</Button>
+                    <Button variant='danger' style={{marginLeft:'45%'}} onClick={() => setLgShow(false)}>Close</Button>
                 </Modal.Body>
             </Modal>
         </div>

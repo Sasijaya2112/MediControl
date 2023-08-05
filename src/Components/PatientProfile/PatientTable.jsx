@@ -3,7 +3,7 @@ import Medication from './Medication';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Investigate from './Investigate';
-import Report from './Report';
+import Report from './ReportModal';
 
 const PatientTable = ({ patientName }) => {
 
@@ -52,7 +52,7 @@ const PatientTable = ({ patientName }) => {
                                     <Investigate value={row.id}/>
                                 </th>
                                 <th scope="col">
-                                    <Medication />
+                                    <Medication value={row.id}/>
                                 </th>
                                 <th scope="col">
                                     <Report value={row.id}/>
