@@ -10,9 +10,9 @@ const Medication = ({value}) => {
     const [lgShow, setLgShow] = useState(false);
 
     const[tablet,setTablet]=useState('');
-    const[forenoon,setForenoon]=useState(0);
-    const[afternoon,setAfternoon]=useState(0);
-    const[night,setNight]=useState(0);
+    const[forenoon,setForenoon]=useState();
+    const[afternoon,setAfternoon]=useState();
+    const[night,setNight]=useState();
 
     const[db_medication,db_getMedication]=useState([])
     const [db_patientsById, db_getPatientById] = useState([]);

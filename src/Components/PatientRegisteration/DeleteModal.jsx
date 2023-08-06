@@ -12,6 +12,7 @@ function DeleteModal({value}) {
     const deletePatient = async () => {
         await axios.delete(`http://localhost:8080/deleteRegisteredPatient/${value}`)
         await axios.delete(`http://localhost:8080/deleteInvestigation/${value}`)
+        await axios.delete(`http://localhost:8080/deleteReport/${value}`)
         handleClose();
         window.location.reload(false);
     }

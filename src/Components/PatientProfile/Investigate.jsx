@@ -56,6 +56,7 @@ function Investigate({ value }) {
     }
 
     const report = {
+        id:parentId,
         dov: dov,
         bp: bp,
         height: height,
