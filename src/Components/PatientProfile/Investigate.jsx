@@ -56,7 +56,6 @@ function Investigate({ value }) {
     }
 
     const report = {
-        id:parentId,
         dov: dov,
         bp: bp,
         height: height,
@@ -82,8 +81,8 @@ function Investigate({ value }) {
         window.location.reload(false);
         setDov('');
         setBp('');
-        setComplaint('');
-        setHistory('');
+        // setComplaint('');
+        // setHistory('');
         setIdentification('');
         setPrognosis('');
         setFollowup('');
@@ -129,15 +128,15 @@ function Investigate({ value }) {
                         </div>
                         <Form.Group className="mb-3">
                             <Form.Label>Present Complaint</Form.Label>
-                            <Form.Control type="text" placeholder="" onChange={(e)=>setComplaint(e.target.value)}/>
+                            <Form.Control type="text" placeholder="" value={complaint} onChange={(e)=>setComplaint(e.target.value)}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>History of Presenting Complaint</Form.Label>
-                            <Form.Control as="textarea" placeholder="" onChange={(e)=>setHistory(e.target.value)}/>
+                            <Form.Control as="textarea" placeholder="" value={history} onChange={(e)=>setHistory(e.target.value)}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Identification</Form.Label>
-                            <Form.Control as="textarea" placeholder="" onChange={(e)=>setIdentification(e.target.value)}/>
+                            <Form.Control as="textarea" placeholder="" value={identification} onChange={(e)=>setIdentification(e.target.value)}/>
                         </Form.Group>
                         <div className="d-flex gap-md-4 gap-sm-0 flex-wrap flex-md-nowrap">
                             <div className="d-flex gap-4 flex-sm-wrap flex-md-nowrap">

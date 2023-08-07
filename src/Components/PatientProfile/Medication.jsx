@@ -29,7 +29,7 @@ const Medication = ({value}) => {
     }, [loadPatients])
 
     const medication = {
-        tablet:tablet,
+        tablet:tablet.toUpperCase(),
         forenoon:forenoon,
         afternoon:afternoon,
         night:night,

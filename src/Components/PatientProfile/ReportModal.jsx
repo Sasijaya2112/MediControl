@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useEffect,useCallback } from 'react';
 import axios from 'axios';
 import { Table } from 'react-bootstrap';
+import VisitCard from './VisitCard';
 
 function Report({value}) {
   const [fullscreen, setFullscreen] = useState(true);
@@ -41,6 +42,7 @@ useEffect(() => {
           <Modal.Title>{db_patientsById.name}'s Report </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <VisitCard value={value}/>
         <Table striped bordered hover variant="light">
       <thead>
         <tr>
